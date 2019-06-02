@@ -1,0 +1,82 @@
+ //
+//  main.cpp
+//  mpprob2
+//
+//  Created by Julia Sumague on 25/05/2019.
+//  Copyright © 2019 Julia Sumague. All rights reserved.
+//
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+int main()
+{
+    double o, a, h, p;
+    double anggA, anggB, anggC;
+    double perimeter, area;
+    double pi, apothem, cc;
+    
+    cout << "Input the triangle's opposite side: ";
+    cin >> o;
+    cout << endl;
+    cout << "Input the triangle's adjacent side: ";
+    cin >> a;
+    cout << endl;
+    cout << "Input the traingle's hypotenuse: ";
+    cin >> h;
+    cout << endl;
+    
+    //computing for the interior angles using law of cosines
+    pi = 3.1416;
+    anggA = acos(((o * o) + (h * h) - (a * a)) / (2 * o * h)) * 180 /pi;
+    anggB = acos(((a*a)+(h*h)-(o*o)) / (2 * a * h)) * 180 /pi;
+    anggC = acos(((a*a)+(o*o)-(h*h)) / (2 * a * o)) * 180 /pi;
+    
+    cout << "Side A Angle: " << anggA << " Degrees" << endl;
+    cout << "Side B Angle: " << anggB << " Degrees"<< endl;
+    cout << "Side C Angle: " << anggC << " Degrees"<< endl;
+    
+    cout << endl;
+    
+    //classify what type through triangle sides
+    cout << "Type of triangle: ";
+    if (a == o && o == h)
+        cout << "The tringle is an equilateral triangle." << endl;
+    else if (a == o || a == h)
+        cout << "The triangle is an isosceles triangle." << endl;
+    else if (a != o && o != h)
+        cout << "The triangle is a scalene triangle." << endl;
+    
+    cout << endl;
+    
+    //compute for perimeter and area
+    perimeter = a + o + h;
+    cout << "Perimeter of the triangle: " << perimeter << " units"<< endl;
+    cout << endl;
+    p = (a + o + h)/2;
+    area = (sqrt(p * (p-a)*(p-o)*(p-h)));
+    cout << "Area of the triangle: " << area << " units" << endl;
+    cout << endl;
+    
+    //classify whether acute, right, or obtuse
+    cout << "Classify the triangle: ";
+    if (anggA == 90 || anggB == 90 || anggC == 90)
+        cout << "The triangle is a right triangle.";
+    else if (anggA > 90 || anggB > 90 || anggC > 90)
+        cout << "The triangle is an obtuse triangle.";
+    else if (anggA < 90 || anggB < 90 || anggC < 90)
+        cout << "The triangle is an acute triangle.";
+    cout << endl;
+    cout << endl;
+    
+    //apothem and circumcirle of a triangle
+    apothem = ((p/3)/2) * ((o/a)*(pi/6));
+    cc = (a*o*h) / sqrt((a+o+h)*(o+h-a)*(h+a-o)*(a+o-h));
+    cout << "The apothem of the triangle is: " << apothem << " units." << endl;
+    cout << endl;
+    cout << "The circumcircle of the triangle is: " << cc << " units."<< endl;
+    cout << endl;
+    
+    return 0;
+}
